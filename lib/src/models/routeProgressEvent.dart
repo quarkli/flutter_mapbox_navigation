@@ -1,5 +1,4 @@
 import 'routeLeg.dart';
-import '../helpers.dart';
 
 ///This class contains all progress information at any given time during a navigation session.
 ///This progress includes information for the current route, leg and step the user is traversing along.
@@ -37,19 +36,11 @@ class RouteProgressEvent {
   RouteProgressEvent.fromJson(Map<String, dynamic> json) {
     isProgressEvent = json['arrived'] != null;
     arrived = json['arrived'] == null ? false : json['arrived'] as bool?;
-    distance = isNullOrZero(json['distance']) ? 0.0 : json["distance"] + .0;
-    duration = isNullOrZero(json['duration']) ? 0.0 : json["duration"] + .0;
-    distanceTraveled = isNullOrZero(json['distanceTraveled'])
-        ? 0.0
-        : json["distanceTraveled"] + .0;
-    currentLegDistanceTraveled =
-        isNullOrZero(json['currentLegDistanceTraveled'])
-            ? 0.0
-            : json["currentLegDistanceTraveled"] + .0;
-    currentLegDistanceRemaining =
-        isNullOrZero(json['currentLegDistanceRemaining'])
-            ? 0.0
-            : json["currentLegDistanceRemaining"] + .0;
+    distance = json['distance'] ?? 0;
+    duration = json['duration'] ?? 0;
+    distanceTraveled = json['distanceTraveled'] ?? 0;
+    currentLegDistanceTraveled = json['currentLegDistanceTraveled'] ?? 0;
+    currentLegDistanceRemaining = json['currentLegDistanceRemaining'] ?? 0;
     currentStepInstruction = json['currentStepInstruction'];
     currentLeg = json['currentLeg'] == null
         ? null
